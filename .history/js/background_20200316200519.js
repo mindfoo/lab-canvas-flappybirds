@@ -1,0 +1,3 @@
+class infiniteBackground {
+    drw+a
+}
