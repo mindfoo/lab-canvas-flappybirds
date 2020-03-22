@@ -48,10 +48,10 @@ class Game {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x < 0) {
+      if (obstacle.x > this.width) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
-        console.log(this.scoreArray);
+        console.log(this.scoreArray)
       }
     }
   }
