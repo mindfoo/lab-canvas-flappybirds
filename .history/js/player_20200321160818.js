@@ -23,9 +23,9 @@ class Player {
   update() {
     this.y += this.speedY;
 
-    if (this.y < 0) {
-      this.speedY = 1;
-      this.y = 0;
+    if (this.y <= 0) {
+      this.speedY = 0;
+      this.y=0;
     }
     if (this.y >= this.game.height - this.height) {
       this.speedY = 0;
@@ -50,19 +50,19 @@ class Player {
       }
       */
       if (event.keyCode === 32) {
-        event.preventDefault();
-        //console.log("pressed");
+        console.log("pressed");
 
-        this.speedY = -1;
-        this.gravity = -.2;
+        this.speedY = -2;
+        this.gravity = -1;
         this.update();
       }
     });
 
     window.addEventListener("keyup", event => {
       if (event.keyCode === 32) {
-        event.preventDefault();
-        this.speedY *= -1;
+        this.speedY *= 1;
+        this.gravity = 0.02;
+        this.update();
       }
     });
 

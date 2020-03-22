@@ -3,7 +3,7 @@ window.onload = function() {
   const game = new Game(canvas);
 
   document.getElementById("start-button").onclick = function() {
-    event.preventDefault();
+    
     game.start();
   };
 };
