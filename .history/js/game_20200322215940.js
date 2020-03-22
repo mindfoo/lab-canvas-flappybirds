@@ -43,12 +43,11 @@ class Game {
   obstaclesExistence() {
     for (let obstacle of this.obstaclesArray) {
       obstacle.update();
-
       if (this.checkCollision(this.player, obstacle)) {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.y > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }
@@ -66,7 +65,6 @@ class Game {
       );
     }
   }
-
   gameOver() {
     this.ctx.save();
     this.ctx.fillStyle = 'rgba(255, 165, 0, 0.5)';
@@ -74,11 +72,11 @@ class Game {
     this.ctx.fillStyle = '#222222';
     this.ctx.font = "italic small-caps bold 12px arial";
 
-    this.ctx.fillText(`GAME OVER!`, this.width / 2, this.height - 80);
+    this.ctx.fillText(`GAME OVER!`, this.width -80, this.height / 2);
     this.ctx.fillText(
       `YOU AVOIDED ${this.scoreArray.length} OBSTACLE(S)`,
       this.width / 8,
-      100
+      this.height / 2
     );
 
     this.ctx.restore();

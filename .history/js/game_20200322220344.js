@@ -43,12 +43,12 @@ class Game {
   obstaclesExistence() {
     for (let obstacle of this.obstaclesArray) {
       obstacle.update();
-
+      
       if (this.checkCollision(this.player, obstacle)) {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.y > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }

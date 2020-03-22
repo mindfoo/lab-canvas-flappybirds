@@ -43,21 +43,29 @@ class Game {
   obstaclesExistence() {
     for (let obstacle of this.obstaclesArray) {
       obstacle.update();
-
       if (this.checkCollision(this.player, obstacle)) {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.y > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }
     }
   }
 
-
   checkCollision(player, object) {
     if (object) {
+      // console.log(`Player -
+      // x - ${player.x}
+      // y - ${player.y}
+      // w - ${player.width}
+      // h - ${player.height}
+      // obstacle
+      // x - ${object.x}
+      // y - ${object.y}
+      // w - ${object.width}
+      // h - ${object.height}`);
       return (
         player.x < object.x + object.width &&
         player.x + player.width > object.x &&
@@ -66,26 +74,25 @@ class Game {
       );
     }
   }
-
   gameOver() {
-    this.ctx.save();
-    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.5)';
-    this.ctx.fillRect(0, 0, this.width, this.height);
-    this.ctx.fillStyle = '#222222';
-    this.ctx.font = "italic small-caps bold 12px arial";
+    this.context.save();
+    this.context.fillStyle = "black";
+    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillStyle = "red";
+    this.context.font = "30px Arial";
 
-    this.ctx.fillText(`GAME OVER!`, this.width / 2, this.height - 80);
-    this.ctx.fillText(
+    this.context.fillText(`GAME OVER!`, this.width / 3, this.height / 3);
+    this.context.fillText(
       `YOU AVOIDED ${this.scoreArray.length} OBSTACLE(S)`,
       this.width / 8,
-      100
+      this.height / 2
     );
 
-    this.ctx.restore();
-    //this.player.carCrashAudio.play();
+    this.context.restore();
+    this.player.carCrashAudio.play();
   }
 
-
+  
 
   animation() {
     this.draw();

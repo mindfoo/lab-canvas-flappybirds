@@ -48,7 +48,7 @@ class Game {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.x > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }

@@ -43,49 +43,16 @@ class Game {
   obstaclesExistence() {
     for (let obstacle of this.obstaclesArray) {
       obstacle.update();
-
       if (this.checkCollision(this.player, obstacle)) {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.y > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }
     }
   }
-
-
-  checkCollision(player, object) {
-    if (object) {
-      return (
-        player.x < object.x + object.width &&
-        player.x + player.width > object.x &&
-        player.y < object.y + object.height &&
-        player.y + player.height > object.y
-      );
-    }
-  }
-
-  gameOver() {
-    this.ctx.save();
-    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.5)';
-    this.ctx.fillRect(0, 0, this.width, this.height);
-    this.ctx.fillStyle = '#222222';
-    this.ctx.font = "italic small-caps bold 12px arial";
-
-    this.ctx.fillText(`GAME OVER!`, this.width / 2, this.height - 80);
-    this.ctx.fillText(
-      `YOU AVOIDED ${this.scoreArray.length} OBSTACLE(S)`,
-      this.width / 8,
-      100
-    );
-
-    this.ctx.restore();
-    //this.player.carCrashAudio.play();
-  }
-
-
 
   animation() {
     this.draw();

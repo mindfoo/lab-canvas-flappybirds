@@ -43,12 +43,11 @@ class Game {
   obstaclesExistence() {
     for (let obstacle of this.obstaclesArray) {
       obstacle.update();
-
       if (this.checkCollision(this.player, obstacle)) {
         this.gameStatus = "game-over";
       }
 
-      if (obstacle.x > this.width) {
+      if (obstacle.y > this.height) {
         this.obstaclesArray.shift();
         this.scoreArray.push(1);
       }
@@ -66,7 +65,6 @@ class Game {
       );
     }
   }
-
   gameOver() {
     this.ctx.save();
     this.ctx.fillStyle = 'rgba(255, 165, 0, 0.5)';
